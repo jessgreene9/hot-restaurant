@@ -6,7 +6,7 @@ app.use(express.urlencoded({ extended: true}));
 app.use(express.json());
 
 app.get('/', (req, res) => {
-    res.send('<h1 style= color: darkred"> Welcome to Hot Restaurant!</h1>');
+    res.send('<h1 style= "color: darkred"> Welcome to Hot Restaurant!</h1>');
 });
 
 
