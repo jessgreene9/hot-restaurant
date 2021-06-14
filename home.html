@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+
+    <title>Home Page</title>
+</head>
+<body>
+    <div class="container">
+
+        <div class="jumbotron">
+          <h1 class="text-center"><span class="fa fa-fire"></span> Hot Restaurant</h1>
+          <hr>
+          <h2 class="text-center">We only have 5 tables! Book your seat before they all are gone!</h2>
+          
+    
+          <div class="text-center">
+            <a href="/tables"><button class="btn btn-lg btn-primary"><span class="fa fa-list-alt"></span> View Tables</button></a>
+            <a href="/reserve"><button class="btn btn-lg btn-danger"><span class="fa fa-credit-card"></span> Make Reservation</button></a>
+          </div>
+    
+        </div>
+    
+        <footer class="footer">
+          <div class="container">
+            <p><a href="/api/tables">API Table Link</a> | <a href="/api/waitlist">API Wait List</a>
+          </div>
+        </footer>
+    
+      </div>
+      <script type="text/javascript">
+      
+        const addBtn = document.getElementById('add-btn');
+        
+       
+        addBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          
+         
+          const tableNumber = document.getElementById('table').value.trim();
+          const tableId = document.getElementById('id').value.trim();
+          const newName = document.getElementById('name').value.trim();
+          const newPhone = document.getElementById('phone').value.trim();
+          const newEmail = document.getElementById('email').value.trim();
+          
+          const newTable = {
+            table: tableNumber,
+            id: tableId,
+            name: newName,
+            phone: newPhone,
+            email: newEmail,
+            
+          };
+  
+        
+          fetch('/api/tables', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(newTable),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              console.log('tables.html', data);
+              alert(`Adding table: ${data.name}`);
+            })
+            .catch((error) => {
+              console.error('Error:', error);
+            });
+        });
+      </script>
+    
+    </body>
+    </html>
+    
+    
+</body>
+</html>
