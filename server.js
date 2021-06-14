@@ -37,8 +37,8 @@ app.get('/tables', (req, res) => res.sendFile(path.join(__dirname, 'tables.html'
 app.get('/reserve', (req, res) => res.sendFile(path.join(__dirname, 'reservations.html')));
 
 
-
-
+app.get('/api/tables', (req, res) => res.json(reservations));
+app.get('/api/waitlist', (req, res) => res.json(waitList));
 
 
 
